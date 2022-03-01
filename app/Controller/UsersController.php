@@ -1,24 +1,23 @@
-// app/Controller/UsersController.php
 <?php
 class UsersController extends AppController {
 
 
     public function beforeFilter() {
-        parent::beforeFilter();
-        $this->Auth->allow('add'); // Permitindo que os usuários se registrem
+    parent::beforeFilter();
+    $this->Auth->allow('add'); // Permitindo que os usuários se registrem
+}
+
+public function login() {
+    if ($this->Auth->login()) {
+        $this->redirect('http://localhost/cakephp-2.10.24/');
+    } else {
+        $this->Flash->error(__('Invalid username or password, try again'));
     }
-    
-    public function login() {
-        if ($this->Auth->login()) {
-            $this->redirect($this->Auth->redirect());
-        } else {
-            $this->Flash->error(__('Invalid username or password, try again'));
-        }
-    }
-    
-    public function logout() {
-        $this->redirect($this->Auth->logout());
-    }
+}
+
+public function logout() {
+    $this->redirect($this->Auth->logout());
+}
 
     public function index() {
         $this->User->recursive = 0;
