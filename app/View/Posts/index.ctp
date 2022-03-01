@@ -2,6 +2,10 @@
 
 <h1>Posts do Blog</h1>
 <p><?php echo $this->Html->link('Add Post', array('controller' => 'posts', 'action' => 'add'));?></p>
+<p><?php echo $this->Html->link('Add User', array('controller' => 'users', 'action' => 'add'));?></p>
+<p><?php echo $this->Html->link('Login', array('controller' => 'users', 'action' => 'login'));?></p>
+<p><?php echo $this->Html->link('Logout', array('controller' => 'users', 'action' => 'logout'));?></p>
+
 <table>
     <tr>
         <th>Id</th>

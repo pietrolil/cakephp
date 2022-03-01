@@ -3,21 +3,21 @@ class UsersController extends AppController {
 
 
     public function beforeFilter() {
-    parent::beforeFilter();
-    $this->Auth->allow('add'); // Permitindo que os usuários se registrem
-}
-
-public function login() {
-    if ($this->Auth->login()) {
-        $this->redirect('http://localhost/cakephp-2.10.24/');
-    } else {
-        $this->Flash->error(__('Invalid username or password, try again'));
+        parent::beforeFilter();
+        $this->Auth->allow('add', 'logout'); // Permitindo que os usuários se registrem
     }
-}
-
-public function logout() {
-    $this->redirect($this->Auth->logout());
-}
+    
+    public function login() {
+        if ($this->Auth->login()) {
+            $this->redirect($this->Auth->redirect('http://localhost/cakephp-2.10.24/'));
+        } else {
+            $this->Flash->error(__('Invalid username or password, try again'));
+        }
+    }
+    
+    public function logout() {
+        $this->redirect($this->Auth->logout());
+    }
 
     public function index() {
         $this->User->recursive = 0;
@@ -76,4 +76,5 @@ public function logout() {
         $this->Flash->error(__('User was not deleted'));
         $this->redirect(array('action' => 'index'));
     }
+
 }
