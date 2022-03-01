@@ -8,9 +8,10 @@ class UsersController extends AppController {
     }
     
     public function login() {
-        if (!$this->Auth->login()) {
+        if ($this->Auth->login()) {
+            $this->redirect($this->Auth->redirectUrl('http://localhost/blog/'));
+        } else {
             $this->Flash->error(__('Invalid username or password, try again'));
-            //$this->redirect($this->Auth->redirectUrl());
         }
     }
     
