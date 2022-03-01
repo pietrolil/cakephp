@@ -8,10 +8,9 @@ class UsersController extends AppController {
     }
     
     public function login() {
-        if ($this->Auth->login()) {
-            $this->redirect($this->Auth->redirectUrl('http://localhost/cakephp-2.10.24/'));
-        } else {
+        if (!$this->Auth->login()) {
             $this->Flash->error(__('Invalid username or password, try again'));
+            //$this->redirect($this->Auth->redirectUrl());
         }
     }
     

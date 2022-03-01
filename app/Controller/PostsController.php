@@ -22,7 +22,7 @@ class PostsController extends AppController {
         }
     }
 
-    function edit($id = null) {
+    function edit($id) {
         $this->Post->id = $id;
         if ($this->request->is('get')) {
             $this->request->data = $this->Post->findById($id);
@@ -48,16 +48,15 @@ class PostsController extends AppController {
         if (parent::isAuthorized($user)) {
             return true; 
         }
-
-        else if ($this->action === 'add') {
+        if ($this->action === 'add') {
             return true;
         }
-        else if (in_array($this->action, array('edit', 'delete'))) {
+        if (in_array($this->action, array('edit', 'delete'))) {
             $postId = (int) $this->request->params['pass'][0];
-            return $this->Post->isOwnedBy($postId, $user['id']);
+            $post = $this->Post->findById($postId)['Post'];
+
+            return $post['user_id'] == $user['id'];
         }
-        
-        return false;
     }
 
 }
