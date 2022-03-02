@@ -6,8 +6,14 @@ class PostsController extends AppController {
 
     function index() {
         $this->set('posts', $this->Post->find('all'));
-        $this->set('user_id', $this->Auth->user('id'));
         $this->set('role' , $this->Auth->user('role'));
+        if(empty($this->Auth->user('id'))){
+            $this->set('user_id', '12');
+        }else{
+            $this->set('user_id', $this->Auth->user('id'));
+        }
+        
+        
     }
 
     public function view($id = null) {
