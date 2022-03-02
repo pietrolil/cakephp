@@ -24,7 +24,7 @@ class UsersController extends AppController {
         $this->set('users', $this->paginate());
     }
 
-    public function view($id = null) {
+    public function view($id) {
         if (!$this->User->exists($id)) {
             throw new NotFoundException(__('Invalid user'));
         }
