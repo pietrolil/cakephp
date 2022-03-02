@@ -45,7 +45,7 @@
                 ?>
 
             </td>
-            <td><?php echo $product['Product']['created_at']; ?></td>
+            <td><?php echo $product['Product']['created']; ?></td>
         </tr>
     <?php endforeach; ?>
 
