@@ -5,6 +5,7 @@
 <p><?php echo $this->Html->link('Add User', array('controller' => 'users', 'action' => 'add')); ?></p>
 <p><?php echo $this->Html->link('Login', array('controller' => 'users', 'action' => 'login')); ?></p>
 <p><?php echo $this->Html->link('Logout', array('controller' => 'users', 'action' => 'logout')); ?></p>
+<p><?php echo $this->Html->link('Go to Products', array('controller' => 'products', 'action' => 'index')); ?></p>
 
 <table>
     <tr>
