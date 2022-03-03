@@ -10,4 +10,4 @@ echo $this->Form->input('status', array(
     'options' => array('new' => 'New', 'used' => 'Used')
 ));
 echo $this->Form->input('id', array('type' => 'hidden'));
-echo $this->Form->end('Save Post');
+echo $this->Form->end('Save Product');

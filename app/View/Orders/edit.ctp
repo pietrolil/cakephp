@@ -7,4 +7,4 @@ echo $this->Form->input('status', array(
     'options' => array('approving' => 'Approving', 'in progress' => 'In progress', 'finished' => 'Finished')
 ));
 echo $this->Form->input('id', array('type' => 'hidden'));
-echo $this->Form->end('Save Post');
+echo $this->Form->end('Save Order');
