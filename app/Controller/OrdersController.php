@@ -1,6 +1,5 @@
 <?php
 
-App::paths('Product');
 class OrdersController extends AppController
 {
 
@@ -21,11 +20,14 @@ class OrdersController extends AppController
     {
         $data = explode(',',$data);
         if ($this->request->is('post')) {
-            if ($data[1] > $this->request->data['Order']['quantity']) {
+            if ($data[1] >= $this->request->data['Order']['quantity']) {
                 $this->request->data['Order']['user_id'] = $this->Auth->user('id'); // Adicionada essa linha
                 $this->request->data['Order']['product_id'] = $data[0]; // Adicionada essa linha
                 $this->request->data['Order']['status'] = 'approving';
                 if ($this->Order->save($this->request->data)) {
+                    $this->request->data = $this->Order->Product->findById($data[0]);
+                    $this->request->data['Product']['quantity'] =  intval($this->request->data['Product']['quantity']) - 2 ;
+                    $this->Order->Product->save($this->request->data);
                     $this->Flash->success('Your Order has been saved.');
                     $this->redirect(array('controller' => 'products', 'action' => 'index'));
                 }

@@ -22,6 +22,9 @@ class ProductsController extends AppController {
             }
         }
     }
+    private function dropQuantity($data){
+        print_r($data);exit();
+    }
 
     public function edit($id = null) {
         

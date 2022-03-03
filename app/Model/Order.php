@@ -2,7 +2,9 @@
 
 class Order extends AppModel {
     public $name = 'Order';
-
+    public $belongsTo = array(
+        'Product'
+    );
     public $validate = array(
         'quantity' => array(
             'rule' => 'notBlank'
