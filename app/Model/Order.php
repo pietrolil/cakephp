@@ -1,21 +1,15 @@
 <?php
 
-class Product extends AppModel {
-    public $name = 'Product';
+class Order extends AppModel {
+    public $name = 'Order';
 
     public $validate = array(
-        'name' => array(
-            'rule' => 'notBlank'
-        ),
-        'price' => array(
-            'rule' => 'notBlank'
-        ),
         'quantity' => array(
             'rule' => 'notBlank'
         ),
         'status' => array(
             'valid' => array(
-                'rule' => array('inList', array('new', 'used')),
+                'rule' => array('inList', array('approving', 'in progress', 'finished')),
                 'message' => 'Please enter a valid status',
                 'allowEmpty' => false
             )

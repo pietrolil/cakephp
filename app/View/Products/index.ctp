@@ -3,6 +3,7 @@
 <h1>Products do Blog</h1>
 
 <p><?php echo $this->Html->link('Add Product', array('controller' => 'products', 'action' => 'add')); ?></p>
+<p><?php echo $this->Html->link('See Orders', array('controller' => 'orders', 'action' => 'index')); ?></p>
 
 <table>
     <tr>
@@ -14,7 +15,7 @@
         <th>Action</th>
         <th>Created</th>
 
-        
+
     </tr>
 
     <!-- Aqui é onde nós percorremos nossa matriz $products, imprimindo as informações dos products -->
@@ -29,21 +30,27 @@
             <td><?php echo $product['Product']['quantity']; ?></td>
             <td>
                 <?php
-            
-                    echo $this->Html->link(
-                        'Edit',
-                        array('action' => 'edit', $product['Product']['id'])
-                    );
+                echo $this->Html->Link(
+                    'Order',
+                    array('controller' => 'orders', 'action' => 'add', $product['Product']['id'] . ',' . $product['Product']['quantity']),
+                    array('confirm' => 'Are you sure?')
+                );
+                ?>
+                <?php
+
+                echo $this->Html->link(
+                    'Edit',
+                    array('action' => 'edit', $product['Product']['id'])
+                );
 
                 ?>
                 <?php
-                    echo $this->Form->postLink(
-                        'Delete',
-                        array('action' => 'delete', $product['Product']['id']),
-                        array('confirm' => 'Are you sure?')
-                    );
+                echo $this->Form->postLink(
+                    'Delete',
+                    array('action' => 'delete', $product['Product']['id']),
+                    array('confirm' => 'Are you sure?')
+                );
                 ?>
-
             </td>
             <td><?php echo $product['Product']['created']; ?></td>
         </tr>

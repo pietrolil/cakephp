@@ -7,6 +7,7 @@
 <p><?php echo $this->Html->link('Logout', array('controller' => 'users', 'action' => 'logout')); ?></p>
 <p><?php echo $this->Html->link('Go to Products', array('controller' => 'products', 'action' => 'index')); ?></p>
 
+
 <table>
     <tr>
         <th>Id</th>
