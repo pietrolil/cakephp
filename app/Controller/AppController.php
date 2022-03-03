@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Application level Controller
  *
@@ -30,7 +31,8 @@ App::uses('Controller', 'Controller');
  * @package		app.Controller
  * @link		https://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
-class AppController extends Controller {
+class AppController extends Controller
+{
     public $components = array(
         'Flash',
         'Auth' => array(
@@ -39,15 +41,16 @@ class AppController extends Controller {
             'authorize' => array('Controller') // Adicionamos essa linha
         )
     );
-    
-    public function isAuthorized($user) {
+
+    public function isAuthorized($user)
+    {
         if (isset($user['role']) && $user['role'] === 'admin') {
             return true; // Admin pode acessar todas actions
         }
         return false;
-        
     }
-    function beforeFilter() {
+    function beforeFilter()
+    {
         $this->Auth->allow('index', 'view');
     }
 }

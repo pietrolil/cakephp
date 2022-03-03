@@ -1,6 +1,7 @@
 <?php
 
-class Post extends AppModel {
+class Post extends AppModel
+{
     public $name = 'Post';
 
     public $validate = array(
@@ -11,7 +12,4 @@ class Post extends AppModel {
             'rule' => 'notBlank'
         )
     );
-
 }
-
-

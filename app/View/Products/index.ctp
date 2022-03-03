@@ -30,26 +30,30 @@
             <td><?php echo $product['Product']['quantity']; ?></td>
             <td>
                 <?php
-                echo $this->Html->Link(
-                    'Order',
-                    array('controller' => 'orders', 'action' => 'add', $product['Product']['id'] . ',' . $product['Product']['quantity']),
-                    array('confirm' => 'Are you sure?')
-                );
+                if ($role == 'client') {
+                    echo $this->Html->Link(
+                        'Order',
+                        array('controller' => 'orders', 'action' => 'add', $product['Product']['id'] . ',' . $product['Product']['quantity']),
+                        array('confirm' => 'Are you sure?')
+                    );
+                }
                 ?>
                 <?php
-
-                echo $this->Html->link(
-                    'Edit',
-                    array('action' => 'edit', $product['Product']['id'])
-                );
-
+                if (in_array($role, array('admin', 'employee'))) {
+                    echo $this->Html->link(
+                        'Edit',
+                        array('action' => 'edit', $product['Product']['id'])
+                    );
+                }
                 ?>
                 <?php
-                echo $this->Form->postLink(
-                    'Delete',
-                    array('action' => 'delete', $product['Product']['id']),
-                    array('confirm' => 'Are you sure?')
-                );
+                if (in_array($role, array('admin', 'employee'))) {
+                    echo $this->Form->postLink(
+                        'Delete',
+                        array('action' => 'delete', $product['Product']['id']),
+                        array('confirm' => 'Are you sure?')
+                    );
+                }
                 ?>
             </td>
             <td><?php echo $product['Product']['created']; ?></td>

@@ -1,6 +1,7 @@
 <?php
 
-class Order extends AppModel {
+class Order extends AppModel
+{
     public $name = 'Order';
     public $belongsTo = array(
         'Product'
@@ -16,7 +17,6 @@ class Order extends AppModel {
                 'allowEmpty' => false
             )
         ),
-        
-    );
 
+    );
 }

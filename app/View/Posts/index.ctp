@@ -25,7 +25,7 @@
             </td>
             <td>
                 <?php
-                
+
                 if (($user_id[0] == $post['Post']['user_id']) || ($role == 'admin')) {
                     echo $this->Html->link(
                         'Edit',

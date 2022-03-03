@@ -1,26 +1,28 @@
 <?php
 
-class PostsController extends AppController {
-    public $helpers = array ('Html','Form');
+class PostsController extends AppController
+{
+    public $helpers = array('Html', 'Form');
     public $name = 'Posts';
 
-    function index() {
+    function index()
+    {
         $this->set('posts', $this->Post->find('all'));
-        $this->set('role' , $this->Auth->user('role'));
-        if(empty($this->Auth->user('id'))){
+        $this->set('role', $this->Auth->user('role'));
+        if (empty($this->Auth->user('id'))) {
             $this->set('user_id', '12');
-        }else{
+        } else {
             $this->set('user_id', $this->Auth->user('id'));
         }
-        
-        
     }
 
-    public function view($id = null) {
+    public function view($id = null)
+    {
         $this->set('post', $this->Post->findById($id));
     }
 
-    public function add() {
+    public function add()
+    {
         if ($this->request->is('post')) {
             $this->request->data['Post']['user_id'] = $this->Auth->user('id'); // Adicionada essa linha
             if ($this->Post->save($this->request->data)) {
@@ -30,7 +32,8 @@ class PostsController extends AppController {
         }
     }
 
-    function edit($id) {
+    function edit($id)
+    {
         $this->Post->id = $id;
         if ($this->request->is('get')) {
             $this->request->data = $this->Post->findById($id);
@@ -42,7 +45,8 @@ class PostsController extends AppController {
         }
     }
 
-    function delete($id) {
+    function delete($id)
+    {
         if (!$this->request->is('post')) {
             throw new MethodNotAllowedException();
         }
@@ -52,9 +56,10 @@ class PostsController extends AppController {
         }
     }
 
-    public function isAuthorized($user) {
+    public function isAuthorized($user)
+    {
         if (parent::isAuthorized($user)) {
-            return true; 
+            return true;
         }
         if ($this->action === 'add') {
             return true;
@@ -66,5 +71,4 @@ class PostsController extends AppController {
             return $post['user_id'] == $user['id'];
         }
     }
-
 }

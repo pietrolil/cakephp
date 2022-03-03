@@ -1,6 +1,7 @@
 <?php
 
-class Product extends AppModel {
+class Product extends AppModel
+{
     public $name = 'Product';
 
     public $validate = array(
@@ -20,7 +21,6 @@ class Product extends AppModel {
                 'allowEmpty' => false
             )
         ),
-        
-    );
 
+    );
 }
