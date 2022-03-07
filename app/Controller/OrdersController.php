@@ -28,7 +28,7 @@ class OrdersController extends AppController
                 $this->request->data['Order']['status'] = 'approving';
                 if ($this->Order->save($this->request->data)) {
                     $this->request->data = $this->Order->Product->findById($data[0]);
-                    $this->request->data['Product']['quantity'] =  intval($this->request->data['Product']['quantity']) - 2;
+                    $this->request->data['Product']['quantity'] =  intval($this->request->data['Product']['quantity']) - $data[1];
                     $this->Order->Product->save($this->request->data);
                     $this->Flash->success('Your Order has been saved.');
                     $this->redirect(array('controller' => 'products', 'action' => 'index'));
